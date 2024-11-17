@@ -2,9 +2,13 @@ from src.sql_database import get_dataset_columns_dict
 from src.utils import get_datasets_list
 
 
+# Avoid mess in model code
 def get_prompts():
+    # for prompt usage
     datasets_list = get_datasets_list()
+    # key -> dataset name, value -> column names
     dataset_columns_dict = get_dataset_columns_dict(datasets_list)
+    # for joining datasets
     common_column = dataset_columns_dict["dataset1"][0]
 
     column_names_str = "\n".join(

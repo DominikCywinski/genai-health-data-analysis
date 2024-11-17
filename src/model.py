@@ -8,15 +8,16 @@ from src.sql_database import execute_sql_query
 
 class SQLResponseGenerator:
     def __init__(self, api_key=None):
-        load_dotenv()
+        load_dotenv()  # Load environment keys
         if api_key is None:
             api_key = os.getenv("GOOGLE_API_KEY")
         genai.configure(api_key=api_key)
+        # get prompts
         sql_prompt, response_prompt = get_prompts()
 
         self.sql_prompt = sql_prompt
         self.response_prompt = response_prompt
-        self.llm = genai.GenerativeModel("gemini-pro")
+        self.llm = genai.GenerativeModel("gemini-1.5-flash")
 
         self.sql_template = PromptTemplate(
             input_variables=["question"], template=sql_prompt
@@ -25,18 +26,18 @@ class SQLResponseGenerator:
             input_variables=["results", "question"], template=response_prompt
         )
 
+    # Generate SQL query based on question
     def generate_sql_query(self, question):
         prompt = self.sql_template.format(question=question)
         response = self.llm.generate_content([prompt, question])
 
         return response.text
 
+    # Generate response based on SQL query and question
     def generate_natural_language_response(self, results, question):
-        print(results)
-        print(type(results))
         prompt = self.response_template.format(results=results, question=question)
-        print(prompt)
         response = self.llm.generate_content([prompt, question])
+
         return response.text
 
 
