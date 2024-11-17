@@ -5,6 +5,7 @@ from src.preprocess_data import get_preprocessed_datasets
 from src.utils import get_datasets_list, DATABASE_DIR
 from src.model import SQLResponseGenerator
 from src.web_layout import create_layout
+from src.query_logger import log_query
 
 
 # Create database if it doesn't exist or overwrite if button is clicked
@@ -43,7 +44,8 @@ if submit_clicked:
             st.subheader("Result:")
             st.header(response)
             print("Result: ", response)
-
+            # Save logs for privacy monitoring
+            log_query(user_input, sql_query, response)
         except Exception as e:
             st.header("Sorry, something went wrong :(. Please try again.")
             print(e)
