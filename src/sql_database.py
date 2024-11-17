@@ -3,13 +3,14 @@
 import sqlite3
 import os
 from src.utils import DATABASE_DIR
+from src.encrypt import encrypt_df
 
 
 def create_db(datasets_list):
     connection = sqlite3.connect(DATABASE_DIR)
 
+    # Create table in database for all datasets in DATABASE_DIR
     for idx, dataset in enumerate(datasets_list):
-        # Create table in database for all datasets in DATABASE_DIR
         # keep idx+1 as table name according to datasets names (to avoid missunderstanding)
         dataset.to_sql(f"dataset{idx+1}", connection, if_exists="replace", index=False)
 
@@ -26,6 +27,7 @@ def get_dataset_columns_dict(datasets_list):
         cursor.execute(f"PRAGMA table_info(dataset{idx+1});")
         columns = [column[1] for column in cursor.fetchall()]
         dataset_columns_dict[f"dataset{idx+1}"] = columns
+        print(columns)
 
     connection.close()
 

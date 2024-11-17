@@ -1,4 +1,5 @@
 import os
+import pandas as pd
 
 DATABASE_DIR = "databases/database.db"
 
@@ -12,3 +13,10 @@ def get_datasets_list():
             datasets_list.append(os.path.join(DATASETS_DIR, file))
 
     return datasets_list
+
+
+def get_dataframes():
+    datasets = get_datasets_list()
+    dfs = [pd.read_excel(dataset, engine="openpyxl") for dataset in datasets]
+
+    return dfs

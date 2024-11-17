@@ -7,21 +7,17 @@ import pandas as pd
 
 
 # Return preprocessed datasets
-def get_preprocessed_datasets(dataset1, dataset2):
-    # read datasets
-    dataset1 = pd.read_excel(dataset1)
-    dataset2 = pd.read_excel(dataset2)
-
-    check_missing_data(dataset1, dataset2)
+def get_preprocessed_datasets(dataframe1, dataframe2):
+    check_missing_data(dataframe1, dataframe2)
 
     # fill missing data in dataset1
-    dataset1.fillna(
+    dataframe1.fillna(
         {
-            "Genetic_Pedigree_Coefficient": dataset1[
+            "Genetic_Pedigree_Coefficient": dataframe1[
                 "Genetic_Pedigree_Coefficient"
             ].median(),
             "Pregnancy": 0,
-            "alcohol_consumption_per_day": dataset1[
+            "alcohol_consumption_per_day": dataframe1[
                 "alcohol_consumption_per_day"
             ].median(),
         },
@@ -29,22 +25,24 @@ def get_preprocessed_datasets(dataset1, dataset2):
     )
 
     # replace physical activity with median
-    dataset2 = (
-        dataset2.groupby("Patient_Number")["Physical_activity"]
+    dataframe2 = (
+        dataframe2.groupby("Patient_Number")["Physical_activity"]
         .median()
         .reset_index()
         .astype(int)
     )
-    dataset2 = dataset2.rename(columns={"Physical_activity": "Median_Steps_10_days"})
+    dataframe2 = dataframe2.rename(
+        columns={"Physical_activity": "Median_Steps_10_days"}
+    )
 
-    check_missing_data(dataset1, dataset2)
+    check_missing_data(dataframe1, dataframe2)
 
     ## replace binary with Male/Female for better understanding
     # dataset1["Sex"] = dataset1["Sex"].replace({1: "Female", 0: "Male"})
 
-    dataset1, dataset2 = feature_engineering(dataset1, dataset2)
+    dataframe1, dataframe2 = feature_engineering(dataframe1, dataframe2)
 
-    return [dataset1, dataset2]
+    return [dataframe1, dataframe2]
 
 
 # For testing purpose: Check if there is any missing data in df1 and df2

@@ -2,7 +2,7 @@ import streamlit as st
 import os
 from src.sql_database import execute_sql_query, create_db
 from src.preprocess_data import get_preprocessed_datasets
-from src.utils import get_datasets_list, DATABASE_DIR
+from src.utils import get_datasets_list, DATABASE_DIR, get_dataframes
 from src.model import SQLResponseGenerator
 from src.web_layout import create_layout
 from src.query_logger import log_query
@@ -12,10 +12,13 @@ from src.query_logger import log_query
 def create_or_overwrite_database(overwrite=False):
     if overwrite or not os.path.exists(DATABASE_DIR):
         print("Creating database...")
-        datasets = get_datasets_list()
+        dataframes = get_dataframes()
         # optional step for preprocessing and feature engineering
-        datasets[0], datasets[1] = get_preprocessed_datasets(datasets[0], datasets[1])
-        create_db(datasets)
+        dataframes[0], dataframes[1] = get_preprocessed_datasets(
+            dataframes[0], dataframes[1]
+        )
+
+        create_db(dataframes)
 
 
 # Create page layout
