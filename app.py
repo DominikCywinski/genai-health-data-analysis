@@ -4,6 +4,7 @@ from src.sql_database import execute_sql_query, create_db
 from src.preprocess_data import get_preprocessed_datasets
 from src.utils import get_datasets_list, DATABASE_DIR
 from src.model import SQLResponseGenerator
+from src.web_layout import create_layout
 
 
 # Create database if it doesn't exist or overwrite if button is clicked
@@ -16,14 +17,8 @@ def create_or_overwrite_database(overwrite=False):
         create_db(datasets)
 
 
-st.set_page_config(page_title="GenAI", page_icon="🤖")
-st.markdown(
-    '<h1 style="text-align: center;">GenAI App To Retrieve information from SQL Database</h1>',
-    unsafe_allow_html=True,
-)
-user_input = st.text_input("Input: ", key="input", placeholder="Enter your question...")
-submit_clicked = st.button("Ask the Question")
-overwrite_db = st.button("Update Database")
+# Create page layout
+user_input, submit_clicked, overwrite_db = create_layout()
 
 create_or_overwrite_database(overwrite=overwrite_db)
 
