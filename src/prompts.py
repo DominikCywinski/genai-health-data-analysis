@@ -1,5 +1,5 @@
 from src.sql_database import get_dataset_columns_dict
-from src.utils import get_datasets_list
+from src.utils import get_datasets_list, PROTECTED_COLUMN
 
 
 # Avoid mess in model code
@@ -64,15 +64,15 @@ def get_prompts():
         also the sql code should not have ``` in beginning or end and sql word in output
         """
 
-    response_prompt = """
+    response_prompt = f"""
         You are an expert in natural language processing and SQL response interpretation.
         You have provided:
-        - User's input question: "{question}"
-        - SQL query results based on the input question: {results}
+        - User's input question: "{{question}}"
+        - SQL query results based on the input question: {{results}}
         
         return the answer to the User's input question in natural language based on question and query results.
         Sometimes you might need to calculate some value based on the query results.
+        If question is about {PROTECTED_COLUMN} column, do not use it in the response. 
         Use full sentences and avoid assumptions or external knowledge not present in the query results.
         """
-
     return sql_prompt, response_prompt

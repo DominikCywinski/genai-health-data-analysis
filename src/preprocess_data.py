@@ -2,8 +2,21 @@
 ### BASED ON 'data-audit-report.ipynb' ###
 
 import pandas as pd
+from faker import Faker
+from src.utils import PROTECTED_COLUMN
 
 # pd.set_option("display.max_columns", None)
+
+
+# Add name column for encrypting showcase
+def add_name_column(df1, df2):
+    fake = Faker()
+    common_column = "Patient_Number"
+
+    patient_numbers = pd.concat([df1[common_column], df2[common_column]]).unique()
+    name_mapping = {patient: fake.name() for patient in patient_numbers}
+    df1[PROTECTED_COLUMN] = df1[common_column].map(name_mapping)
+    df2[PROTECTED_COLUMN] = df2[common_column].map(name_mapping)
 
 
 # Return preprocessed datasets
@@ -41,6 +54,8 @@ def get_preprocessed_datasets(dataframe1, dataframe2):
     # dataset1["Sex"] = dataset1["Sex"].replace({1: "Female", 0: "Male"})
 
     dataframe1, dataframe2 = feature_engineering(dataframe1, dataframe2)
+    # for encrypting showcase
+    add_name_column(dataframe1, dataframe2)
 
     return [dataframe1, dataframe2]
 

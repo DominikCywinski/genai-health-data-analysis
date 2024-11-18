@@ -4,6 +4,7 @@ import pandas as pd
 DATABASE_DIR = "databases/database.db"
 
 DATASETS_DIR = "datasets/"
+PROTECTED_COLUMN = "Patient_Name"
 
 
 def get_datasets_list():

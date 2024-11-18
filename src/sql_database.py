@@ -2,8 +2,8 @@
 
 import sqlite3
 import os
-from src.utils import DATABASE_DIR
-from src.encrypt import encrypt_df
+from src.utils import DATABASE_DIR, PROTECTED_COLUMN
+from src.encrypt import encrypt_value, decrypt_value
 
 
 def create_db(datasets_list):
@@ -11,6 +11,9 @@ def create_db(datasets_list):
 
     # Create table in database for all datasets in DATABASE_DIR
     for idx, dataset in enumerate(datasets_list):
+        # encrypt Patient Number to secure data
+        dataset[PROTECTED_COLUMN] = dataset[PROTECTED_COLUMN].apply(encrypt_value)
+
         # keep idx+1 as table name according to datasets names (to avoid missunderstanding)
         dataset.to_sql(f"dataset{idx+1}", connection, if_exists="replace", index=False)
 
