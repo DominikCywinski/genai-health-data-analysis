@@ -59,7 +59,7 @@ def get_prompts():
         SELECT AVG(t1.salt_content_in_the_diet) AS Average_Salt_Content 
         FROM dataset1 AS t1 
         JOIN dataset2 AS t2 ON t1.Patient_Number = t2.Patient_Number 
-        WHERE t2.Average_Steps_10_days > 10000;
+        WHERE t2.Median_Steps_10_days > 10000;
         
         also the sql code should not have ``` in beginning or end and sql word in output
         """
@@ -75,4 +75,5 @@ def get_prompts():
         If question is about {PROTECTED_COLUMN} column, do not use it in the response. 
         Use full sentences and avoid assumptions or external knowledge not present in the query results.
         """
+
     return sql_prompt, response_prompt
