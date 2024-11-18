@@ -1,3 +1,5 @@
+### Utilities ###
+
 import os
 import pandas as pd
 
@@ -7,6 +9,7 @@ DATASETS_DIR = "datasets/"
 PROTECTED_COLUMN = "Patient_Name"
 
 
+# Return a list of datasets
 def get_datasets_list():
     datasets_list = []
     for file in os.listdir(DATASETS_DIR):
@@ -16,6 +19,7 @@ def get_datasets_list():
     return datasets_list
 
 
+# Return a list of dataframes
 def get_dataframes():
     datasets = get_datasets_list()
     dfs = [pd.read_excel(dataset, engine="openpyxl") for dataset in datasets]

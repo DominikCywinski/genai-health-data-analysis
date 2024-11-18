@@ -1,4 +1,4 @@
-### Logging queries for privacy purposes ###
+### Logging queries for checking privacy assumptions ###
 
 import logging
 

@@ -1,3 +1,6 @@
+### Evaluates SQL queries using metrics such as BLEU, execution score and validity ###
+### saves results to a evaluation_results/eval_results.csv file ###
+
 import sqlite3
 import pandas as pd
 import csv
@@ -26,7 +29,7 @@ test_queries = [
 ]
 
 
-# normalize for bleu metrics
+# Normalize query
 def normalize_sql(sql_query: str) -> str:
     formatted_query = sqlparse.format(
         sql_query.strip(),
@@ -58,7 +61,8 @@ def validate_sql_syntax(sql_query):
         return False
 
 
-def execute_and_compare(generated_sql, reference_sql):
+# Execute generated and reference SQL query and compare if results match
+def execute_queries_and_compare(generated_sql, reference_sql):
 
     try:
         connection = sqlite3.connect(DATABASE_DIR)
@@ -86,6 +90,7 @@ def execute_and_compare(generated_sql, reference_sql):
         return False, {"error": str(e)}
 
 
+# Calculate BLEU score using reference and generated SQL queries
 def calculate_bleu(generated_sql, reference_sql):
     # Tokenize queries (split by spaces)
     generated_tokens = generated_sql.split()
@@ -104,7 +109,7 @@ def calculate_bleu(generated_sql, reference_sql):
     return bleu_score
 
 
-# Evaluates SQL queries using multiple metrics and saves results to a CSV file.
+# Evaluates SQL queries using provided metrics and saves results to a CSV file.
 def evaluate_and_save_results(test_queries, output_csv_path):
     results = []
 
@@ -115,7 +120,7 @@ def evaluate_and_save_results(test_queries, output_csv_path):
 
         # Calculate metrics
         is_valid = validate_sql_syntax(generated_sql)
-        execution_score = execute_and_compare(generated_sql, reference_sql)
+        execution_score = execute_queries_and_compare(generated_sql, reference_sql)
         bleu_score = calculate_bleu(generated_sql, reference_sql)
 
         # Append results to list
@@ -153,4 +158,4 @@ if __name__ == "__main__":
     model = SQLResponseGenerator()
 
     test_queries = prepare_test_data(model, test_queries)
-    evaluate_and_save_results(test_queries, "eval_results/evaluation_results.csv")
+    evaluate_and_save_results(test_queries, "evaluation_results/eval_results.csv")

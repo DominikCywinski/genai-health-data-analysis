@@ -19,47 +19,6 @@ def add_name_column(df1, df2):
     df2[PROTECTED_COLUMN] = df2[common_column].map(name_mapping)
 
 
-# Return preprocessed datasets
-def get_preprocessed_datasets(dataframe1, dataframe2):
-    check_missing_data(dataframe1, dataframe2)
-
-    # fill missing data in dataset1
-    dataframe1.fillna(
-        {
-            "Genetic_Pedigree_Coefficient": dataframe1[
-                "Genetic_Pedigree_Coefficient"
-            ].median(),
-            "Pregnancy": 0,
-            "alcohol_consumption_per_day": dataframe1[
-                "alcohol_consumption_per_day"
-            ].median(),
-        },
-        inplace=True,
-    )
-
-    # replace physical activity with median
-    dataframe2 = (
-        dataframe2.groupby("Patient_Number")["Physical_activity"]
-        .median()
-        .reset_index()
-        .astype(int)
-    )
-    dataframe2 = dataframe2.rename(
-        columns={"Physical_activity": "Median_Steps_10_days"}
-    )
-
-    check_missing_data(dataframe1, dataframe2)
-
-    ## replace binary with Male/Female for better understanding
-    # dataset1["Sex"] = dataset1["Sex"].replace({1: "Female", 0: "Male"})
-
-    dataframe1, dataframe2 = feature_engineering(dataframe1, dataframe2)
-    # for encrypting showcase
-    add_name_column(dataframe1, dataframe2)
-
-    return [dataframe1, dataframe2]
-
-
 # For testing purpose: Check if there is any missing data in df1 and df2
 def check_missing_data(df1, df2):
     if df1.isnull().sum().sum() + df2.isnull().sum().sum() == 0:
@@ -92,4 +51,46 @@ def feature_engineering(dataset1, dataset2):
     dataset2["Activity_Level"] = pd.cut(
         dataset2["Median_Steps_10_days"], bins=bins, labels=labels, right=False
     )
+
     return dataset1, dataset2
+
+
+# Preprocess datasets and return it as a list
+def preprocess_and_return_datasets(dataframe1, dataframe2):
+    check_missing_data(dataframe1, dataframe2)
+
+    # Fill missing data in dataset1
+    dataframe1.fillna(
+        {
+            "Genetic_Pedigree_Coefficient": dataframe1[
+                "Genetic_Pedigree_Coefficient"
+            ].median(),
+            "Pregnancy": 0,
+            "alcohol_consumption_per_day": dataframe1[
+                "alcohol_consumption_per_day"
+            ].median(),
+        },
+        inplace=True,
+    )
+
+    # Replace physical activity with median
+    dataframe2 = (
+        dataframe2.groupby("Patient_Number")["Physical_activity"]
+        .median()
+        .reset_index()
+        .astype(int)
+    )
+    dataframe2 = dataframe2.rename(
+        columns={"Physical_activity": "Median_Steps_10_days"}
+    )
+
+    check_missing_data(dataframe1, dataframe2)
+
+    ## Replace binary with Male/Female for better understanding
+    # dataset1["Sex"] = dataset1["Sex"].replace({1: "Female", 0: "Male"})
+
+    dataframe1, dataframe2 = feature_engineering(dataframe1, dataframe2)
+    # For encrypting showcase
+    add_name_column(dataframe1, dataframe2)
+
+    return [dataframe1, dataframe2]

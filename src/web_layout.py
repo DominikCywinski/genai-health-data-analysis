@@ -1,3 +1,5 @@
+### Layout of web application ###
+
 import streamlit as st
 
 
@@ -14,6 +16,7 @@ def create_layout():
         key="input",
         placeholder="Enter your question (do not include personal data)",
     )
+
     st.markdown(
         """
     <div style="color:red; font-weight:bold; text-align:center;">
