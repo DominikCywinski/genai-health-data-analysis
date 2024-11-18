@@ -6,3 +6,5 @@ openpyxl
 langchain
 cryptography
 faker
+nltk
+sqlparse
