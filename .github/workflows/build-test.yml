@@ -19,7 +19,7 @@ jobs:
       - name: Set up Conda and install dependecies with setup.sh
         run: |
           chmod +x setup.sh
-          ./install.sh
+          ./setup.sh
 
       - name: Verify installation
         run: |
