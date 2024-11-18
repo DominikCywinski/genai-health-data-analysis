@@ -16,11 +16,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Conda and install dependecies with setup.sh
+      - name: Install Miniconda
+        run: |
+          wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+          bash miniconda.sh -b -p $HOME/miniconda
+          echo "$HOME/miniconda/bin" >> $GITHUB_PATH
+          source $HOME/miniconda/bin/activate
+          conda init bash
+          exec bash
+
+      # Run the setup.sh script which will create conda environment and install dependencies
+      - name: Run setup script
         run: |
           chmod +x setup.sh
-          ./setup.sh
-
+          bash setup.sh
+       
       - name: Verify installation
         run: |
           conda activate genai-env
