@@ -16,9 +16,9 @@ Key features of the application:
 
 ## Technologies
 
-- **Gemini 1.5 Flash** (GenAI model) with **instruction-tuning**.
+- **Gemini Pro** (GenAI model) with **instruction-tuning**.
 - **SQLite** for database management.
-- **Streamlit** for building the web interface.
+- **Streamlit** with **caching** for building the web interface.
 - **Fernet Encryption** for ensuring patient data privacy.
 
 ---
