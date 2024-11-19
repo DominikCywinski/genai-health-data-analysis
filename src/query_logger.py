@@ -2,7 +2,7 @@
 
 import logging
 
-logging.basicConfig(filename="logs/app.log", level=logging.INFO)
+logging.basicConfig(filename="app_logs/app.log", level=logging.INFO)
 
 
 def log_query(user_query, sql_query, response):
