@@ -25,7 +25,7 @@ Key features of the application:
 
 ## Setup and Installation
 
-### 1. Clone the repository:
+### 1. Clone the repository (skip if you already have it locally):
 
 ```bash
 git clone https://github.com/DominikCywinski/genai-health-data-analysis.git
@@ -62,7 +62,12 @@ streamlit run app.py
 
 ### 3. The application will be available at the local address provided by Streamlit (usually http://localhost:8501).
 
-### 4. Run evaluation (optional step):
+### 4. Ask the question i.e.:
+```bash
+How many women make more than 30000 steps per day?
+```
+
+### 5. Run evaluation (optional step):
 
 ```bash
 python -m src.evaluate
