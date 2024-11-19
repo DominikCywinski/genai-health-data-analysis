@@ -32,11 +32,11 @@ git clone https://github.com/DominikCywinski/genai-health-data-analysis.git
 cd genai-health-data-analysis
 ```
 
-### 2. Create .env file with GOOGLE_API_KEY and ENCRYPTION_KEY environment variables. I will you provide encryption key for testing purposes:
+### 2. Create .env file with GOOGLE_API_KEY and ENCRYPTION_KEY environment variables.
 
-```bash
-ENCRYPTION_KEY=miAOh3zLhF4hsx--qz7P2qJf6QXiaznIOZA7sX1jW3E=
-```
+- I will you provide you .env file with encryption key (`miAOh3zLhF4hsx--qz7P2qJf6QXiaznIOZA7sX1jW3E=`) for testing
+  purposes.
+- You need to provide your GOOGLE_API_KEY.
 
 ### 3. If you don’t have conda installed, download and install Miniconda or Anaconda.
 
