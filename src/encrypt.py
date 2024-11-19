@@ -15,7 +15,6 @@ def load_cipher():
     load_dotenv()
     key = os.getenv("ENCRYPTION_KEY").encode()
     # !!!Provide key for testing purposes!!!
-    key = "miAOh3zLhF4hsx--qz7P2qJf6QXiaznIOZA7sX1jW3E=".encode()
     cipher = Fernet(key)
 
     return cipher

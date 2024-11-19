@@ -6,6 +6,7 @@ from src.encrypt import encrypt_value, decrypt_value
 
 
 def create_db(datasets_list):
+
     connection = sqlite3.connect(DATABASE_DIR)
 
     # Create table in database for all datasets in DATABASE_DIR
