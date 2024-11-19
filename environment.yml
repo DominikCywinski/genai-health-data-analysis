@@ -1,0 +1,17 @@
+name: genai-env
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - jupyterlab
+  - streamlit
+  - openpyxl
+  - langchain
+  - cryptography
+  - faker
+  - nltk
+  - sqlparse
+  - pip
+  - pip:
+      - google-generativeai
+      - python-dotenv
