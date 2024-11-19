@@ -34,7 +34,7 @@ cd genai-health-data-analysis
 
 ### 2. Create .env file with GOOGLE_API_KEY and ENCRYPTION_KEY environment variables.
 
-- I will you provide you .env file with encryption key (`miAOh3zLhF4hsx--qz7P2qJf6QXiaznIOZA7sX1jW3E=`) for testing
+- I will provide you .env file with test encryption key (`miAOh3zLhF4hsx--qz7P2qJf6QXiaznIOZA7sX1jW3E=`) for testing
   purposes.
 - You need to provide your GOOGLE_API_KEY.
 
@@ -63,6 +63,7 @@ streamlit run app.py
 ### 3. The application will be available at the local address provided by Streamlit (usually http://localhost:8501).
 
 ### 4. Ask the question i.e.:
+
 ```bash
 How many women make more than 30000 steps per day?
 ```
