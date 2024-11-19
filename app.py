@@ -21,6 +21,8 @@ def create_or_overwrite_database(overwrite=False):
         )
 
         create_db(dataframes)
+        # Clear cache
+        st.cache_resource.clear()
 
 
 def show_results(response):
