@@ -39,7 +39,7 @@ def get_prompts():
         - `salt_content_in_the_diet` and `alcohol_consumption_per_day` are numerical values representing daily intake
            in milligrams and milliliters, respectively.
         - `Level_of_Stress`: Numerical scale where higher values indicate greater stress levels.
-        - 'Average_Steps(10 days)': average number of steps per day in the last 10 days
+        - 'Median_Steps_10_days': median number of steps per day in the last 10 days
         - 'Activity_Level': sedentary, lightly_active, moderately_active, very_active
         
         EXAMPLES:
@@ -74,7 +74,7 @@ def get_prompts():
         
         return the answer to the User's input question in natural language based on question and query results.
         Sometimes you might need to calculate some value based on the query results.
-        If question is about {PROTECTED_COLUMN} column, do not use it in the response. 
+        If question is about Name provided in {PROTECTED_COLUMN} column, do not use it in the response. 
         Use full sentences and avoid assumptions or external knowledge not present in the query results.
         """
 

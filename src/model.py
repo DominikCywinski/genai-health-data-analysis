@@ -17,7 +17,7 @@ class SQLResponseGenerator:
 
         self.sql_prompt = sql_prompt
         self.response_prompt = response_prompt
-        self.llm = genai.GenerativeModel("gemini-1.5-flash")
+        self.llm = genai.GenerativeModel("gemini-pro")
 
         self.sql_template = PromptTemplate(
             input_variables=["question"], template=sql_prompt
