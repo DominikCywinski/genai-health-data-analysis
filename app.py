@@ -23,35 +23,48 @@ def create_or_overwrite_database(overwrite=False):
         create_db(dataframes)
 
 
+def show_results(response):
+    st.subheader("Result:")
+    st.header(response)
+    print("Result: ", response)
+
+
+# Load model in cache
+@st.cache_resource
+def load_model():
+    model = SQLResponseGenerator()
+    print("Model Loaded")
+
+    return model
+
+
+# Cache user input and generated SQL query to it
+@st.cache_resource
+def process_user_input(user_input):
+    sql_query = sql_model.generate_sql_query(user_input)
+    print(f"Generated SQL Query: {sql_query}")
+
+    sql_results = execute_sql_query(sql_query)
+    response = sql_model.generate_natural_language_response(sql_results, user_input)
+    return sql_query, response
+
+
 # Create page layout
 user_input, submit_clicked, overwrite_db = create_layout()
 
 create_or_overwrite_database(overwrite=overwrite_db)
-
-# Check if model is initialized in session state
-if "sql_generator" not in st.session_state:
-    st.session_state["sql_generator"] = SQLResponseGenerator()
-    print("Model created")
-
-# Get SQL model from session state
-sql_model = st.session_state["sql_generator"]
+sql_model = load_model()
 
 if submit_clicked:
     if user_input != "":
         try:
-            sql_query = sql_model.generate_sql_query(user_input)
-            print(f"Generated SQL Query: {sql_query}")
-
-            sql_results = execute_sql_query(sql_query)
-            response = sql_model.generate_natural_language_response(
-                sql_results, user_input
-            )
-
-            st.subheader("Result:")
-            st.header(response)
-            print("Result: ", response)
+            # Process user input or get from cache
+            sql_query, response = process_user_input(user_input)
+            # print result
+            show_results(response)
             # Save logs for privacy monitoring
             log_query(user_input, sql_query, response)
+
         except Exception as e:
             st.header("Sorry, something went wrong :(. Please try again.")
             print(e)
