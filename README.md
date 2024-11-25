@@ -2,7 +2,7 @@
 
 ## Application Description
 
-This application utilizes the **Gemini 1.5 Flash** model with added **instruction-tuning** to provide context-aware
+This application utilizes the **Gemini Pro** model with added **instruction-tuning** to provide context-aware
 responses to health-related queries. The system allows users to input questions, which are then analyzed based on a
 provided health dataset to generate insights and recommendations.
 
