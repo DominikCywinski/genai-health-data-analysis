@@ -34,10 +34,6 @@ cd genai-health-data-analysis
 
 ### 2. Create .env file with GOOGLE_API_KEY and ENCRYPTION_KEY environment variables.
 
-- I will provide you .env file with test encryption key (`miAOh3zLhF4hsx--qz7P2qJf6QXiaznIOZA7sX1jW3E=`) for testing
-  purposes.
-- You need to provide your GOOGLE_API_KEY.
-
 ### 3. If you don’t have conda installed, download and install Miniconda or Anaconda.
 
 ### 4. Set Up a Virtual Environment
