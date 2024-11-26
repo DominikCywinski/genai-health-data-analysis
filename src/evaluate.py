@@ -6,8 +6,8 @@ import pandas as pd
 import csv
 import sqlparse
 from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
-from src.utils import DATABASE_DIR
-from src.model import SQLResponseGenerator
+from utils import DATABASE_DIR
+from model import SQLResponseGenerator
 
 # Sample test queries for evaluation
 test_queries = [

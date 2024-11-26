@@ -3,7 +3,7 @@
 
 import pandas as pd
 from faker import Faker
-from src.utils import PROTECTED_COLUMN
+from utils import PROTECTED_COLUMN
 
 # pd.set_option("display.max_columns", None)
 

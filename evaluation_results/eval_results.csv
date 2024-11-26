@@ -1,4 +1,4 @@
 User Input,Generated SQL,Reference SQL,Is Valid,Execution Score,BLEU Score
-How many women are there?,select COUNT(*) from dataset1 where Sex = 1,select COUNT(*) from dataset1 where Sex = 1,True,"(True, {'message': 'Results match'})",1.0
+How many women are there?,select COUNT(*) from dataset1 where Sex = 1;,select COUNT(*) from dataset1 where Sex = 1,True,"(True, {'message': 'Results match'})",0.8408964152537145
 What are the average BMI values?,select AVG(BMI) from dataset1;,select AVG(BMI) from dataset1,True,"(True, {'message': 'Results match'})",0.3976353643835253
 "What is the average salt content in the diet patients, who average make more than 10000 steps per day?",select AVG(t1.salt_content_in_the_diet) as Average_Salt_Content from dataset1 as t1 join dataset2 as t2 on t1.Patient_Number = t2.Patient_Number where t2.Median_Steps_10_days > 10000;,select AVG(t1.salt_content_in_the_diet) as Average_Salt_Content from dataset1 as t1 join dataset2 as t2 on t1.Patient_Number = t2.Patient_Number where t2.Median_Steps_10_days > 10000,True,"(True, {'message': 'Results match'})",0.9457416090031758

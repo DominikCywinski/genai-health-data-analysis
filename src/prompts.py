@@ -1,7 +1,7 @@
 ### Script responsible for generating prompts ###
 
-from src.sql_database import get_dataset_columns_dict
-from src.utils import get_datasets_list, PROTECTED_COLUMN
+from sql_database import get_dataset_columns_dict
+from utils import get_datasets_list, PROTECTED_COLUMN
 
 
 # Avoid mess in model code

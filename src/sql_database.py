@@ -1,8 +1,8 @@
 ### Script responsible for creating database and executing SQL queries ###
 
 import sqlite3
-from src.utils import DATABASE_DIR, PROTECTED_COLUMN
-from src.encrypt import encrypt_value, decrypt_value
+from utils import DATABASE_DIR, PROTECTED_COLUMN
+from encrypt import encrypt_value, decrypt_value
 
 
 def create_db(datasets_list):

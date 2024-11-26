@@ -2,12 +2,16 @@
 
 import streamlit as st
 import os
-from src.sql_database import execute_sql_query, create_db
-from src.preprocess_data import preprocess_and_return_datasets
-from src.utils import DATABASE_DIR, get_dataframes
-from src.model import SQLResponseGenerator
-from src.web_layout import create_layout
-from src.query_logger import log_query
+import sys
+import os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), "src"))
+from sql_database import execute_sql_query, create_db
+from preprocess_data import preprocess_and_return_datasets
+from utils import DATABASE_DIR, get_dataframes
+from model import SQLResponseGenerator
+from web_layout import create_layout
+from query_logger import log_query
 
 
 # Create database if it doesn't exist or overwrite if update button is clicked

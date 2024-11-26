@@ -2,7 +2,7 @@ import os
 import google.generativeai as genai
 from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv
-from src.prompts import get_prompts
+from prompts import get_prompts
 
 
 # Model responsible for generating SQL queries and replying to user based on SQL results and user question
