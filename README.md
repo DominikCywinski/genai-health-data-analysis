@@ -4,7 +4,8 @@
 
 This application utilizes the **Gemini Pro** model with added **instruction-tuning** to provide context-aware
 responses to health-related queries. The system allows users to input questions, which are then analyzed based on a
-provided health dataset to generate insights and recommendations.
+provided health dataset to generate insights and recommendations. The project includes an automated CI/CD pipeline 
+for seamless builds and tests, as well as unit tests to ensure the reliability and accuracy of the model.
 
 Key features of the application:
 
@@ -13,6 +14,7 @@ Key features of the application:
 - Collecting evaluation metrics such as BLEU, SQL query validity and execution score
 - A web interface built using the **Streamlit** framework.
 - Protecting user privacy by encrypting patient data.
+- CI/CD Pipeline automatically builds and tests the application with each push to the repository or pull request.
 
 ## Technologies
 
