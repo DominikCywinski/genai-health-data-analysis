@@ -1,10 +1,10 @@
-# GenAI Solution for Conducting Health Data Analysis
+# GenAI Solution for SQL Query Generation
 
 ## Application Description
 
 This application utilizes the **Gemini Pro** model with added **instruction-tuning** to provide context-aware
-responses to health-related queries. The system allows users to input questions, which are then analyzed based on a
-provided health dataset to generate insights and recommendations. The project includes an automated CI/CD pipeline 
+responses to queries. The system allows users to input questions, which are then analyzed based on a
+provided dataset to generate insights and recommendations. The project includes an automated CI/CD pipeline 
 for seamless builds and tests, as well as unit tests to ensure the reliability and accuracy of the model.
 
 Key features of the application:
@@ -115,7 +115,7 @@ file is parsed, and the data is stored as seperated tables within the database, 
 
 ### 3. SQL Query Generation
 
-The Gemini 1.5 Flash model generates SQL queries based on users question.
+The Gemini 1.5 Pro model generates SQL queries based on users question.
 SQL queries are then executed on the SQLite database.
 The system joins data temporarily on the fly to retrieve the necessary information.
 
