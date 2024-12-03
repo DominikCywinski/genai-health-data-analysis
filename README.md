@@ -30,8 +30,8 @@ Key features of the application:
 ### 1. Clone the repository (skip if you already have it locally):
 
 ```bash
-git clone https://github.com/DominikCywinski/genai-health-data-analysis.git
-cd genai-health-data-analysis
+git clone https://github.com/DominikCywinski/genai-sql-query-generation.git
+cd genai-sql-query-generation
 ```
 
 ### 2. Create .env file with GOOGLE_API_KEY and ENCRYPTION_KEY environment variables.
